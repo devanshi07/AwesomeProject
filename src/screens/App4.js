@@ -1,3 +1,5 @@
+//Insta App Task
+
 import React,{Component} from 'react';
 import {View,Text,FlatList,StyleSheet,Button, Image, SafeAreaView} from 'react-native';
 import { images } from '../res/images/index';//for images
@@ -9,14 +11,16 @@ const styles = StyleSheet.create({
         borderBottomColor: 'black',
         borderBottomWidth: 2
     },
+    horizontal: {
+        flexDirection: 'row',
+        flex:1,
+        width:'100%'
+    },
     logo: {
         height:30,
         width: 30,
         margin :10, 
-        resizeMode: 'contain',
-        
-        
-        
+        resizeMode: 'contain',     
     },
     foroption: {
         height:30,
@@ -34,26 +38,39 @@ const styles = StyleSheet.create({
         marginRight:20,
         justifyContent: 'flex-end',
         resizeMode: 'contain',
-        
+        marginEnd: 20,
         marginLeft: 220
     },
-    textstyle: {
-        fontFamily: 'Cochin',
-        fontWeight: 'bold',
+    description: {
+        color: 'black',
         fontSize: 20,
-        textAlign: 'right',
-        paddingTop: 10,
-        flex: 0.5
-    },
-    textstyle2: {
-        fontFamily: 'Cochin',
+        marginTop: 10,
+        marginLeft: 10,
+        marginBottom: 10,
         fontWeight: 'bold',
+        fontFamily:'sans-serif-light',
+    },
+    username: {
+        color: 'black',
         fontSize: 20,
         textAlign: 'left',
-        paddingTop: 10,
-        flex: 0.5,
-        color: '#2196F3'
+        marginTop: 10,
+        marginLeft: 10,
+        flex:1,
+        fontWeight: 'bold',
+        fontFamily:'sans-serif-light',
     },
+    forSafeAreaView: {
+        backgroundColor: '#fff',
+        flex:1
+    },
+    postimage: {
+        width:'100%',
+        height:300,
+        backgroundColor: '#fff',
+        resizeMode:'contain',
+        flex:1
+    }
     
 });
 
@@ -82,19 +99,11 @@ const DATA = [
   const renderItem = ({ item }) => (
     <View style={styles.container}>
             
-                <View style={{flexDirection: 'row',flex:1}}>
+                <View style={styles.horizontal}>
                     <Image
                         style={styles.logo}
                         source={images.IMG_RACER}/>
-                    <Text style={{
-                        color: 'white',
-                        fontSize: 20,
-                        textAlign: 'left',
-                        marginTop: 10,
-                        marginLeft: 10,
-                        flex:1,
-                        fontFamily:'sans-serif-light',
-                    }}>{item.title}</Text>
+                    <Text style={styles.username}>{item.title}</Text>
                     <Image
                         style={styles.foroption}
                         source={images.IMG_MORE}/>
@@ -102,10 +111,10 @@ const DATA = [
 
                 
                 <Image
-                    style={{width:'100%',height:300,backgroundColor: '#fff',resizeMode:'contain',flex:1}}
+                    style={styles.postimage}
                     source={item.image}/>
 
-                <View style={{flexDirection: 'row',flex: 1,width:"100%"}}>
+                <View style={styles.horizontal}>
                     <Image
                         style={styles.logo}
                         source={images.IMG_HEART}/>
@@ -120,15 +129,8 @@ const DATA = [
                         source={images.IMG_BOOKMARK}/>
                 </View>
 
-                <View style={{flexDirection: 'row'}}>
-                    <Text style={{
-                        color: 'white',
-                        fontSize: 20,
-                        marginTop: 10,
-                        marginLeft: 10,
-                        marginBottom: 10,
-                        fontFamily:'sans-serif-light',
-                    }}>{item.name}</Text>
+                <View style={styles.horizontal}>
+                    <Text style={styles.description}>{item.name}</Text>
                 </View>
         </View>
   )
@@ -138,8 +140,7 @@ export default class App4 extends Component{
     render()
     {
         return(
-            <SafeAreaView style={{backgroundColor: '#B39DDB',flex:1}}>
-
+            <SafeAreaView style={styles.forSafeAreaView}>
                 <FlatList
                     style={styles.container}
                     data={DATA}

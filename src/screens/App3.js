@@ -1,3 +1,5 @@
+//foobar task
+
 import React,{Component} from 'react';
 import {View,Text,TextInput,StyleSheet,Button, Alert, SafeAreaView} from 'react-native';
 import { images } from '../res/images/index';//for images

@@ -1,3 +1,5 @@
+//simple app which has profile information
+
 import React,{Component} from 'react';
 import {View,Text,Image,StyleSheet, ImageStore, SafeAreaView} from 'react-native';
 import { images } from '../res/images/index';//for images
