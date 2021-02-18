@@ -35,8 +35,7 @@ const App = () => {
     <>
       <NavigationContainer>
         <Drawer.Navigator  drawerContent={props => <CustomDrawer {...props} />}>
-          <Drawer.Screen name="HomeDrawer" component={MainTabScreen}/>
-          
+          <Drawer.Screen name="HomeDrawer" component={MainTabScreen}/>  
         </Drawer.Navigator>
       </NavigationContainer>
     </>
