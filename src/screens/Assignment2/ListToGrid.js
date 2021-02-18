@@ -3,6 +3,9 @@
 import React,{Component,useState,useEffect} from 'react';
 import {View,Text,Image,StyleSheet,SafeAreaView,FlatList,TouchableOpacity, Dimensions} from 'react-native';
 import {images} from "../../res/images/index";
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const Item_width = Dimensions.get("window").width;
 
@@ -41,6 +44,8 @@ const styles = StyleSheet.create({
         height: 50,
         alignItems: "center",
         backgroundColor: "red",
+        justifyContent: "center",
+        
     }
 });
 
@@ -74,7 +79,7 @@ let arrayList = [
         image : images.IMG_SEVENTH
     },
     {
-        title : "Eigth",
+        title : "Eighth",
         image : images.IMG_EIGTH
     },
     {
@@ -85,45 +90,53 @@ let arrayList = [
 ];
 
 const renderItem = ({ item }) => (
-    <View style={styles.container}>
-
+    <TouchableOpacity>
+        <View style={styles.container}>    
                 <Image
                     style={styles.postimage}
                     source={item.image}/> 
                 <Text style={styles.textstyle}>{item.title}</Text>        
         </View>
+    </TouchableOpacity>
+    
   )
-function ListToGrid(){
+function ListToGrid({navigation}){
 
     const [nocolumn, setNoColumn] = useState(1);
     const [key, setKey] = useState(1);
+    
         return(
             <SafeAreaView style={{backgroundColor: '#E8EAF6',flex:1}}>
 
             <View>
-                <TouchableOpacity
-                style={styles.headerStyle}
-                onPress={() => {
-                    if(nocolumn == 1)
-                    {
-                        setNoColumn(3);
-                        setKey(key + 1);
-                    }
-                    else{
-                        setNoColumn(1);
-                        setKey(key + 1);
-                    }
-                    
-                }}>
-                    <Text style={styles.headerTextstyle}>Change Layout</Text>
-                </TouchableOpacity>
+                <View style={styles.headerStyle}>
+                    <TouchableOpacity
+                        onPress={() => {
+                            if(nocolumn == 1)
+                            {
+                                setNoColumn(3);
+                                setKey(key + 1);
+                            }
+                            else{
+                                setNoColumn(1);
+                                setKey(key + 1);
+                            }   
+                    }}>
+                        <Text style={styles.headerTextstyle}>Change Layout</Text>   
+                    </TouchableOpacity>
+
+                {/* <MaterialCommunityIcons name="sort-alpha-asc"  size={30} />
+                <MaterialCommunityIcons name="view-grid-outline"  size={30} />  */}
+
+                </View>
+                
                 <FlatList
-                style={{marginBottom:50}}
-                key={key}
-                numColumns={nocolumn}
-                data={arrayList}
-                renderItem={renderItem}
-                keyExtractor={item => item.id}/>
+                    style={{marginBottom:50}}
+                    key={key}
+                    numColumns={nocolumn}
+                    data={arrayList}
+                    renderItem={renderItem}
+                    keyExtractor={item => item.id}/>
             </View>
         </SafeAreaView> 
         );    

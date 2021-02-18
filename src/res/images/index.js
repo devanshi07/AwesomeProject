@@ -15,5 +15,8 @@ export const images = {
     IMG_CHAT : require('./../images/chat.png'),
     IMG_MORE : require('./../images/more.png'),
     IMG_RACER : require('./../images/racer.png'),
-    IMG_SEND : require('./../images/send.png')
+    IMG_SEND : require('./../images/send.png'),
+    IMG_SEARCH : require('./../images/search.png'),
+    IMG_BACKGROUND : require('./../images/back.png'),
+
 }
